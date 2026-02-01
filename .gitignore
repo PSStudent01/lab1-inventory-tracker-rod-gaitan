@@ -1,1 +1,15 @@
+# Dependencies
 node_modules/
+
+# Compiled JavaScript
+#*.js
+*.js.map
+
+# TypeScript declaration files
+*.d.ts
+*.d.ts.map
+
+# Build output (although I physically removed this folder)
+dist/
+
+

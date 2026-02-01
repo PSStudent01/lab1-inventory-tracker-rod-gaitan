@@ -1,3 +1,4 @@
+"use strict";
 /*
 // Illustrating each component of a basic class:             **********************   // VIP FOR ILLLUSTRAITON PURPOSES ONLY!!!!! ******************
 //
@@ -22,49 +23,43 @@ console.log(product.price);             // Accessing and printing the 'price' pr
 
 
 2.	Create the Product 'Base' Class:
-o	Inside src/models/Product.ts, create a Product 'base class' with the following: 
+o	Inside src/models/Product.ts, create a Product 'base class' with the following:
 	Properties: sku (string), name (string), price (number).
-	Methods: 
+	Methods:
 	displayDetails() - a method that returns a formatted string with the product’s details.
 	getPriceWithTax() - a method that calculates the final price of the product with tax.
 */
-
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Product = void 0;
 //- Inside src/models/Product.ts, create a Product 'base class' with the following: 
 //-- Properties: sku (string), name (string), price (number).
-export class Product {
-    sku: string;
-    name: string;
-    price: number;// this is a BASE CLASS =  a blueprint that other, more specific classes extend, so it needs to be exported with the 'EXPORT' keyword when used across files.
-                                                               // also you TYPE ANNOTATE the parameters (aka properties) for the base class
-
-  constructor(sku: string, name: string, price: number) {
-    this.sku = sku;
-    this.name = name;
-    this.price = price;
-  }
-
-displayDetails(): string{                                               //note method has no 'function' descript; must be type annotated in TS; 
-    return `SKU: ${this.sku}, Name: ${this.name}, Price: ${this.price.toFixed(2)}`             
+class Product {
+    sku;
+    name;
+    price; // this is a BASE CLASS =  a blueprint that other, more specific classes extend, so it needs to be exported with the 'EXPORT' keyword when used across files.
+    // also you TYPE ANNOTATE the parameters (aka properties) for the base class
+    constructor(sku, name, price) {
+        this.sku = sku;
+        this.name = name;
+        this.price = price;
+    }
+    displayDetails() {
+        return `SKU: ${this.sku}, Name: ${this.name}, Price: ${this.price.toFixed(2)}`;
+    }
+    getPriceWithTax() {
+        //price_with_tax = price + (price × tax_rate) //basic tax formula
+        //return this.price (+ this.price * .50)    //calculating the tax with a fixed tax rate (not store in variable)
+        const taxRate = .50; // tax rate stored in variable
+        return this.price + (this.price * taxRate);
+    }
 }
-
-getPriceWithTax(): number{
-    //price_with_tax = price + (price × tax_rate) //basic tax formula
-    //return this.price (+ this.price * .50)    //calculating the tax with a fixed tax rate (not store in variable)
-    const taxRate = .50  // tax rate stored in variable
-    return this.price + (this.price * taxRate)
-}
-}
- 
-
-
-
+exports.Product = Product;
 /*
 const productOne = new Product ("8786969876", "LG TV", 200)   // {Ureka !!teh class is what's being called when trying to feed the object!}
 console.log( productOne.displayDetails())
 */
-
 /*
 tsc src/models/Product.ts
 node src/models/Product.js
 */
-
+//# sourceMappingURL=Product.js.map
